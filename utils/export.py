@@ -31,4 +31,5 @@ def export_chat_to_pdf(messages):
         pdf.ln(5)
         
     # Return PDF as bytes
-    return bytes(pdf.output())
+    # dest='S' returns the PDF as a string in fpdf 1.7.2
+    return pdf.output(dest='S').encode('latin-1')
