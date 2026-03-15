@@ -1,0 +1,24 @@
+# Environment variables
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+build/
+dist/
+*.egg-info/
+
+# Data Files (Personal chat history)
+chat_history.json
+all_chat_sessions.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# PDF (if specific to case study and not needed in repo)
+# NeoStats AI Engineer Case Study (1).pdf
