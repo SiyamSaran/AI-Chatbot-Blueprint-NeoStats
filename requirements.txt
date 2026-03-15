@@ -10,3 +10,4 @@ faiss-cpu
 pypdf
 python-dotenv
 tavily-python
+fpdf==1.7.2
