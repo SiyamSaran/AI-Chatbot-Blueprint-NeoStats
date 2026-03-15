@@ -36,3 +36,4 @@ def export_chat_to_pdf(messages):
     if isinstance(content, str):
         return content.encode('latin-1')
     return bytes(content)
+    

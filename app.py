@@ -11,33 +11,33 @@ from utils.export import export_chat_to_pdf
 from utils.storage import get_all_sessions, save_session, delete_session, clear_all_storage
 
 def apply_custom_styles():
-    """Apply the Professional Light White & Ash (Gray) theme"""
+    """Apply the Regulatory Intelligence Dark theme"""
     st.markdown("""
         <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         
         html, body, [data-testid="stAppViewContainer"] {
             font-family: 'Inter', sans-serif;
-            color: #1A1A1A !important;
+            color: #E2E8F0 !important;
         }
 
-        /* Clean White App Background */
+        /* Deep Space Navy App Background */
         .stApp {
-            background-color: #FFFFFF !important;
+            background-color: #0A0F1D !important;
             background-image: none !important;
         }
         
-        /* Light Gray (Ash) Top Header */
+        /* Header */
         header[data-testid="stHeader"] {
-            background: #F8F9FA !important;
-            border-bottom: 2px solid #E9ECEF;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            background: transparent !important;
+            border-bottom: none !important;
+            box-shadow: none !important;
         }
 
-        /* Sidebar - Soft Ash Gray */
+        /* Sidebar - Slightly Lighter Navy */
         [data-testid="stSidebar"] {
-            background-color: #F1F3F5 !important;
-            border-right: 1px solid #DEE2E6;
+            background-color: #111827 !important;
+            border-right: 1px solid #1E293B !important;
         }
         
         /* Sidebar Headings */
@@ -45,117 +45,130 @@ def apply_custom_styles():
         [data-testid="stSidebar"] h2, 
         [data-testid="stSidebar"] h3, 
         [data-testid="stSidebar"] .stSubheader {
-            color: #212529 !important;
-            border-bottom: 2px solid #ADB5BD;
+            color: #F8FAFC !important;
+            border-bottom: 2px solid #334155;
             padding-bottom: 8px !important;
             font-weight: 600 !important;
         }
         
         /* Sidebar Text & Labels */
         [data-testid="stSidebar"] p, [data-testid="stSidebar"] label {
-            color: #495057 !important;
+            color: #CBD5E1 !important;
             font-weight: 500 !important;
         }
 
         /* Minimalist Chat Bubbles */
         [data-testid="stChatMessage"] {
-            background-color: #F8F9FA !important;
-            border: 1px solid #E9ECEF !important;
-            border-radius: 12px !important;
+            background-color: #1E293B !important;
+            border: 1px solid #334155 !important;
+            border-radius: 8px !important;
             padding: 1.5rem !important;
             margin-bottom: 1.2rem !important;
-            color: #212529 !important;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+            color: #F8FAFC !important;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.5) !important;
         }
         
-        /* AI Response - Subtle Ash Highlight */
+        /* AI Response - Navy Highlight */
         [data-testid="stChatMessage"]:has([data-testid="stChatMessageHeader"]:contains("assistant")) {
-            background-color: #E9ECEF !important;
+            background-color: #0F172A !important;
+            border: 1px solid #1E293B !important;
         }
         
-        /* User Message - Clean White */
+        /* User Message - Blue Highlight */
         [data-testid="stChatMessage"]:has([data-testid="stChatMessageHeader"]:contains("user")) {
-            background-color: #FFFFFF !important;
-            border: 1px solid #DEE2E6 !important;
+            background-color: #1E3A8A !important;
+            border: 1px solid #2563EB !important;
         }
 
-        /* Buttons - Modern Ash Gray */
+        /* Buttons - Vivid Blue */
         .stButton button, .stDownloadButton button {
-            background-color: #E9ECEF !important;
-            color: #212529 !important;
-            border: 1px solid #CED4DA !important;
-            border-radius: 8px !important;
+            background-color: #1F68FF !important; /* Scanner Blue */
+            color: #FFFFFF !important;
+            border: none !important;
+            border-radius: 6px !important;
             font-weight: 600 !important;
             transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(31, 104, 255, 0.3) !important;
         }
         
         .stButton button:hover, .stDownloadButton button:hover {
-            background-color: #DEE2E6 !important;
-            border-color: #ADB5BD !important;
-            color: #000000 !important;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05) !important;
+            background-color: #1052D4 !important;
+            box-shadow: 0 6px 15px rgba(31, 104, 255, 0.5) !important;
             transform: translateY(-1px);
         }
 
-        /* Chat Input - Premium White & Ash */
+        /* Chat Input - Premium Dark */
         [data-testid="stChatInput"] {
-            background-color: #FFFFFF !important;
-            border: 2px solid #DEE2E6 !important;
-            border-radius: 12px !important;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+            background-color: #0A0F1D !important;
+            border: 1px solid #334155 !important;
+            border-radius: 8px !important;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3) !important;
         }
 
         [data-testid="stChatInput"] textarea {
-            background-color: #F8F9FA !important;
-            color: #212529 !important; 
-            -webkit-text-fill-color: #212529 !important;
+            background-color: #111827 !important;
+            color: #F8FAFC !important; 
+            -webkit-text-fill-color: #F8FAFC !important;
             font-size: 1.1rem !important;
             padding: 12px 14px !important;
-            caret-color: #495057 !important;
+            caret-color: #60A5FA !important;
+            border-radius: 6px !important;
         }
 
         [data-testid="stChatInput"] textarea::placeholder {
-            color: #ADB5BD !important;
+            color: #64748B !important;
             opacity: 1 !important;
         }
 
         /* Bottom Housing Area */
         [data-testid="stBottom"] {
-            background-color: #FFFFFF !important;
-            border-top: 1px solid #E9ECEF !important;
+            background-color: #0A0F1D !important;
+            border-top: 1px solid #1E293B !important;
         }
         
         [data-testid="stBottomBlockContainer"] {
-            background-color: #FFFFFF !important;
+            background-color: #0A0F1D !important;
         }
 
         /* Toggle Switches */
         button[role="switch"] {
-            border: 1px solid #ADB5BD !important;
-            background-color: #DEE2E6 !important;
+            border: 1px solid #475569 !important;
+            background-color: #1E293B !important;
+        }
+        button[role="switch"][aria-checked="true"] {
+            background-color: #1F68FF !important;
         }
 
-        /* File Uploader - Light Professional Design */
+        /* File Uploader - Dark Professional Design */
         [data-testid="stFileUploader"] {
-            background-color: #F8F9FA !important;
-            border: 2px dashed #CED4DA !important;
-            border-radius: 12px !important;
+            background-color: #0F172A !important;
+            border: 2px dashed #334155 !important;
+            border-radius: 8px !important;
             padding: 1.5rem !important;
         }
         
         [data-testid="stFileUploader"]:hover {
-            background-color: #E9ECEF !important;
-            border-color: #ADB5BD !important;
+            border-color: #60A5FA !important;
+            background-color: #1E293B !important;
         }
         
         [data-testid="stFileUploader"] label {
-            color: #212529 !important;
+            color: #E2E8F0 !important;
             font-weight: 600 !important;
         }
         
         /* Markdown Text Color */
         .stMarkdown p, .stMarkdown li, .stMarkdown span {
-            color: #212529 !important;
+            color: #CBD5E1 !important;
+        }
+
+        /* Custom App Title mimicking REGULATORY INTELLIGENCE */
+        h1[id^="reg-intelligence"], div[data-testid="stMarkdownContainer"] h1 {
+            text-align: center;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #FFFFFF !important;
+            font-weight: 700 !important;
         }
 
         /* Sidebar Download Button Styling */
@@ -164,10 +177,10 @@ def apply_custom_styles():
         }
         
         div.stDownloadButton button {
-            background-color: #E9ECEF !important;
-            border: 1px solid #CED4DA !important;
-            color: #212529 !important;
-            border-radius: 8px !important;
+            background-color: #059669 !important; /* Export CSV green */
+            border: none !important;
+            color: #FFFFFF !important;
+            border-radius: 6px !important;
             width: 35px !important;
             height: 35px !important;
             display: flex !important;
@@ -176,12 +189,12 @@ def apply_custom_styles():
             padding: 0 !important;
             font-size: 1rem !important;
             transition: all 0.2s ease !important;
+            box-shadow: 0 2px 5px rgba(5, 150, 105, 0.4) !important;
         }
         
         div.stDownloadButton button:hover {
-            background-color: #DEE2E6 !important;
-            border-color: #ADB5BD !important;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+            background-color: #047857 !important;
+            box-shadow: 0 4px 8px rgba(5, 150, 105, 0.6) !important;
         }
         </style>
     """, unsafe_allow_html=True)
@@ -231,6 +244,52 @@ def chat_page(response_mode, use_web_search, document_name=None):
         st.session_state.messages = all_sessions[st.session_state.session_id]["messages"]
     else:
         st.session_state.messages = []
+        
+    # --- Detect response mode change and regenerate ---
+    if "last_response_mode" not in st.session_state:
+        st.session_state.last_response_mode = response_mode
+
+    if st.session_state.last_response_mode != response_mode:
+        if st.session_state.messages:
+            # Find last user question
+            last_user_message = None
+            for msg in reversed(st.session_state.messages):
+                if msg["role"] == "user":
+                    last_user_message = msg["content"]
+                    break
+
+            if last_user_message and chat_model:
+                with st.spinner(f"Mode changed! Regenerating response as {response_mode}..."):
+                    augmented_prompt = system_prompt
+                    if st.session_state.vectorstore:
+                        rag_context = retrieve_rag_context(st.session_state.vectorstore, last_user_message)
+                        if rag_context:
+                            augmented_prompt += f"\n\nContext from file:\n{rag_context}"
+                    
+                    if use_web_search:
+                        web_context = perform_web_search(last_user_message)
+                        augmented_prompt += f"\n\nWeb context:\n{web_context}"
+                    
+                    # Create history up to the last user message
+                    history_for_regen = []
+                    for msg in st.session_state.messages:
+                        history_for_regen.append(msg)
+                        if msg["role"] == "user" and msg["content"] == last_user_message:
+                            break
+                            
+                    response = get_chat_response(chat_model, history_for_regen, augmented_prompt)
+            
+                    # Replace last assistant message
+                    if st.session_state.messages and st.session_state.messages[-1]["role"] == "assistant":
+                        st.session_state.messages[-1] = {"role": "assistant", "content": response}
+                    else:
+                        st.session_state.messages.append({"role": "assistant", "content": response})
+                    
+                    save_session(st.session_state.session_id, st.session_state.messages)
+
+        st.session_state.last_response_mode = response_mode
+        st.rerun()
+    # ---------------------------------------------------
     
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
